@@ -56,7 +56,7 @@ int main(int argc, char const *argv[]) {
             if(strcmp(myArgs[0], "exit")==0){
                 exit(0);        // Exit from the shell
             }
-            
+
             pid = fork();
 
             if (pid <0) {
@@ -80,13 +80,3 @@ int main(int argc, char const *argv[]) {
 
     return 0;
 }
-
-
-/************************************
-
-Exercise 1
-
-1. 0 times, since execl doesn't return
-
-
-*************************************/

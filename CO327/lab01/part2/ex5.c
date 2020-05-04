@@ -1,12 +1,31 @@
+/*
+----------------------------
+1.
+Test commad:
+    nc 127.0.0.1 12345
+
+2.
+If wait() is introduced to the given location, new client can't connect to the server (socket establishment) until previous client is disconnected.
+
+3.
+Client program will be disconnect from the server on next input (State: FIN_WAIT2).
+But unable to restart for some time.
+
+4.
+Below Code:
+----------------------------
+*/
+
+
 #include <sys/types.h>
+#include <sys/socket.h>
+#include <sys/wait.h>
+#include <netinet/in.h>
+#include <netinet/in.h>
 #include <stdlib.h>
 #include <unistd.h>
-#include <netinet/in.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
 #include <stdio.h>
 #include <string.h>
-#include "sys/wait.h"
 
 int main(int argc, char**argv){
     int sockfd,newsockfd,n,c=0;
@@ -54,7 +73,7 @@ int main(int argc, char**argv){
                     perror("Client Disconnected");
                     exit(1);
                 }
-                
+
                 n = recvfrom(newsockfd,inBuffer,1000,0,(struct sockaddr *)&cliaddr,& clilen);// information of the client by recvfrom function
                 printf(">> %d > File URL: %s\n", getpid(),inBuffer);
                 // remove \n char at the end
@@ -100,24 +119,3 @@ int main(int argc, char**argv){
     }
     return 0;
 }
-
-
-/*
-Result
-----------------------------
-
-2.
-If wait() is introduced to the given location, new client can't connect to the server until previous client is disconnected.
-
-3.
-Client program will be disconnect from the server on next input.
-But unable to restart for some time.
-
-4.
-
-
-
-
-
-----------------------------
-*/
