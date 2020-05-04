@@ -1,0 +1,41 @@
+
+Exercise 1
+
+i.
+>> top -o %MEM
+
+ii.
+Run ps with the following options: -a, -x, -u, -w.
+
+>> ps
+>> ps -a        # Select all processes with ttys, except session leaders
+>> ps -x        # Processes without controlling ttys
+>> ps -u <userID>
+>> ps -w
+
+What is the name of the process with PID 1?
+    systemd
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+.
