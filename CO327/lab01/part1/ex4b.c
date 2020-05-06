@@ -43,7 +43,7 @@ int main(int argc, char const *argv[]) {
     while (1) {
         printf("\nSHELL >> ");
 
-        fgets(buf, 1023, stdin);        // read a line
+        fgets(buf, 255, stdin);        // read a line
         replaceChar(buf, '\n', '\0');   // Replace new line char with line end
         //printf("command: %s \n", buf);  // Print the input command
 
