@@ -14,7 +14,7 @@ int main(int argc, char **argv)
 	int i;
 
 	// arguments for commands
-	char *cat_args[] = ** insert your code here ** 
+	char *cat_args[] = ** insert your code here **
 	char *grep_args[] = ** insert your code here **
 	char *cut_args[] = ** insert your code here **
 
@@ -35,23 +35,20 @@ int main(int argc, char **argv)
 
 	// fork the first child (to execute cat)
 
-	if (fork() == 0)
-	{
+	if (fork() == 0){
 		// replace cat's stdout with write part of 1st pipe
 		// TODO: ** insert your code here **
-		
+
 		// close all pipes (very important!); end we're using was safely copied
 		// TODO: ** insert your code here **
 
 		// Execute the cat command
 		// TODO: ** insert your code here **
 	}
-	else
-	{
+	else{
 		// fork second child (to execute grep)
 
-		if (fork() == 0)
-		{
+		if (fork() == 0){
 			// replace grep's stdin with read end of 1st pipe
 			// TODO: ** insert your code here **
 
@@ -63,13 +60,12 @@ int main(int argc, char **argv)
 
 			// execute grep command
 			// TODO: ** insert your code here **
+
 		}
-		else
-		{
+		else{
 			// fork third child (to execute cut)
 
-			if (fork() == 0)
-			{
+			if (fork() == 0){
 				// replace cut's stdin with input read of 2nd pipe
 				// TODO: ** insert your code here **
 
@@ -84,10 +80,9 @@ int main(int argc, char **argv)
 
 	// only the parent gets here and waits for 3 children to finish
 	// It's a good idea to close all your pipes (the parent needs none!)
-	// before waiting for your children! 
+	// before waiting for your children!
 
 	// TODO: ** insert your code here **
 
 	// TODO: ** insert your code here **
 }
-

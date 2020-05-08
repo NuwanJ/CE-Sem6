@@ -36,12 +36,10 @@ int main(int argc, char **argv)
 
 	// make a pipe (fds go in pipefd[READ_END] and pipefd[WRITE_END])
 
-	if(pipe(pipefd) == -1)
-	die("pipe()");
+	if(pipe(pipefd) == -1)die("pipe()");
 
 	pid = fork();
-	if(pid == (pid_t)(-1))
-	die("fork()");
+	if(pid == (pid_t)(-1))die("fork()");
 
 	if (pid == 0){
 		// child gets here and handles "grep <search_term>"
@@ -50,8 +48,8 @@ int main(int argc, char **argv)
 		close(0);
 
 		// replace standard input with input part of pipe
-		if(dup(pipefd[READ_END]) == -1)
-		die("dup()");;
+		if(dup(pipefd[READ_END]) == -1)die("dup()");
+		printf("closing(1) %d %d\n", pipefd[0], pipefd[1]);
 
 		// close unused hald of pipe
 		close(pipefd[WRITE_END]);
@@ -69,8 +67,8 @@ int main(int argc, char **argv)
 		close(1);
 
 		// replace standard output with output part of pipe
-		if(dup(pipefd[WRITE_END]) == -1)
-		die("dup()");
+		if(dup(pipefd[WRITE_END]) == -1) die("dup()");
+		printf("closing(2) %d %d\n", pipefd[0], pipefd[1]);
 
 		// close unused input half of pipe
 		close(pipefd[READ_END]);

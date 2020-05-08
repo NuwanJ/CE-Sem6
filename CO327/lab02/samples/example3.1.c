@@ -24,6 +24,7 @@ int main(int argc, char **argv)
         dup2(out, STDOUT_FILENO);
 
         // close unused file descriptors
+        printf("%d %d\n", in, out);
         close(in);
         close(out);
 
