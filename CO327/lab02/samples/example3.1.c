@@ -15,14 +15,13 @@ int main(int argc, char **argv)
 
         // open input and output files
         in = open("fixtures", O_RDONLY);
-        out = open("out", 
-O_WRONLY | O_TRUNC | O_CREAT, S_IRUSR | S_IRGRP | S_IWGRP | S_IWUSR);
+        out = open("out", O_WRONLY | O_TRUNC | O_CREAT, S_IRUSR | S_IRGRP | S_IWGRP | S_IWUSR);
 
         // replace standard input with input file
-        dup2(in, 0);
+        dup2(in, STDIN_FILENO);
 
         // replace standard output with output file
-        dup2(out, 1);
+        dup2(out, STDOUT_FILENO);
 
         // close unused file descriptors
         close(in);
@@ -31,4 +30,3 @@ O_WRONLY | O_TRUNC | O_CREAT, S_IRUSR | S_IRGRP | S_IWGRP | S_IWUSR);
         // execute grep
         execvp("grep", grep_args);
 }
-
