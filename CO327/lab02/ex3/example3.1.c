@@ -11,7 +11,7 @@
 int main(int argc, char **argv)
 {
         int in, out;
-        char *grep_args[] = {"grep", "New Zealand", NULL};
+        char *grep_args[] = {"grep", "Sri Lanka", NULL};
 
         // open input and output files
         in = open("fixtures", O_RDONLY);
