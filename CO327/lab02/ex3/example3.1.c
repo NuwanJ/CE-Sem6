@@ -20,11 +20,12 @@ int main(int argc, char **argv)
         // replace standard input with input file
         dup2(in, STDIN_FILENO);
 
+        printf("%d %d\n", in, out);
+        
         // replace standard output with output file
         dup2(out, STDOUT_FILENO);
 
         // close unused file descriptors
-        printf("%d %d\n", in, out);
         close(in);
         close(out);
 
