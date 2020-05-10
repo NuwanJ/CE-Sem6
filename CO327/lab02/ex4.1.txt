@@ -2,3 +2,11 @@
 a.
 
 mkfifo(fifo, 0666);
+
+This creates a file on given directory, if there isn't exists it already.
+Here, 0666 is a decimal based notation for file permissions. This creates a file with permission 0666
+0666 means the file can be read and write by user, group or any user.
+(Equals to ugo+rw or rw-rw-rw)
+
+If we didn't use this command, the file should be created by manually.
+Unless it gives garbage values for reading and writing doesn't make any mean. We can't determine how OS handles with this file.
