@@ -24,8 +24,7 @@ int main(int argc, char **argv)
 	int pipefd[2];
 	int pid;
 
-	if (argc < 2)
-	{
+	if (argc < 2){
 		printf("%s: missing operand\n", argv[0]);
 		printf("Usage: %s <search_term in %s>\n", argv[0],INPUTFILE);
 		exit(EXIT_FAILURE);
@@ -59,8 +58,8 @@ int main(int argc, char **argv)
 		die("execvp()");
 
 		exit(EXIT_SUCCESS);
-	}
-	else{
+	
+	}else{
 		// parent gets here and handles "cat INPUTFILE"
 
 		// close standard output
