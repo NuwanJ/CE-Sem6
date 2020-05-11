@@ -48,7 +48,7 @@ int main(int argc, char **argv)
 
 		// Previous error was printing to the grep's stdin using this function due to dup2. 
 		// So this should placed before dup2()
-		printf("closing(1) %d %d\n", pipefd[0], pipefd[1]);
+		printf("closing(1) %d %d\n\n", pipefd[0], pipefd[1]);
 
 		// replace standard input with input part of pipe
 		if(dup(pipefd[READ_END]) == -1)die("dup()");
@@ -70,7 +70,7 @@ int main(int argc, char **argv)
 		
 		// Previous error was printing to the cat's stdin using this function due to dup2. 
 		// So this should placed before dup2()
-		printf("closing(2) %d %d\n", pipefd[0], pipefd[1]);
+		printf("closing(2) %d %d\n\n", pipefd[0], pipefd[1]);
 
 		// replace standard output with output part of pipe
 		if(dup(pipefd[WRITE_END]) == -1) die("dup()");
