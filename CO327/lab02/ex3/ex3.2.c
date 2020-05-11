@@ -16,6 +16,8 @@ dup2(int, int) function interchange two given file descriptors. This is useful w
 
 b.ii
 
+once the pipe file descriptors available in parent and child, unused ends should be closed as soon as possible.
+
 b.iii
 
 

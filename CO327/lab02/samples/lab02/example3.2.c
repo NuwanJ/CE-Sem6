@@ -5,6 +5,14 @@
 #include <sys/types.h>
 #include <sys/stat.h>
 
+/**
+ * Executes the command "cat fixtures | grep <input_country>".  
+ * Basic error checking is included for most system calls
+ * 
+ * @author Asitha Bandaranayake 
+ * @version 0.2 05/08/2015
+ */
+
 #define INPUTFILE "fixtures"
 
 /* function prototypes */
@@ -40,11 +48,13 @@ int main(int argc, char **argv)
 
 		// Close standard input
 		close(0);
-		close(pipefd[1]);
 
 		// replace standard input with input part of pipe
 		if(dup(pipefd[0]) == -1)
 			die("dup()");;
+
+		// close unused hald of pipe
+		close(pipefd[1]);
 
 		// execute grep
 		if(execvp("grep", grep_args) == -1)
@@ -58,11 +68,13 @@ int main(int argc, char **argv)
 
 		// close standard output
 		close(1);
-		close(pipefd[0]);
 
 		// replace standard output with output part of pipe
 		if(dup(pipefd[1]) == -1)
 			die("dup()");
+
+		// close unused input half of pipe
+		close(pipefd[0]);
 
 		// execute cat
 		if(execvp("cat", cat_args) == -1)
