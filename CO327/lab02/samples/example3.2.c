@@ -46,9 +46,11 @@ int main(int argc, char **argv)
 		// Close standard input
 		close(0);
 
+		
+		printf("closing(1) %d %d\n", pipefd[0], pipefd[1]);
+
 		// replace standard input with input part of pipe
 		if(dup(pipefd[READ_END]) == -1)die("dup()");
-		printf("closing(1) %d %d\n", pipefd[0], pipefd[1]);
 
 		// close unused hald of pipe
 		close(pipefd[WRITE_END]);
@@ -64,10 +66,12 @@ int main(int argc, char **argv)
 
 		// close standard output
 		close(1);
+		
+
+		printf("closing(2) %d %d\n", pipefd[0], pipefd[1]);
 
 		// replace standard output with output part of pipe
 		if(dup(pipefd[WRITE_END]) == -1) die("dup()");
-		printf("closing(2) %d %d\n", pipefd[0], pipefd[1]);
 
 		// close unused input half of pipe
 		close(pipefd[READ_END]);
