@@ -1,14 +1,11 @@
 {
   "name": "app3",
   "version": "1.0.0",
-  "description": "Env demo",
+  "description": "",
   "main": "app3.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "ZM",
-  "license": "ISC",
-  "dependencies": {
-    "express": "^4.17.1"
-  }
+  "author": "",
+  "license": "ISC"
 }
