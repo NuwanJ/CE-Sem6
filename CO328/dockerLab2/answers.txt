@@ -3,14 +3,20 @@ CO528 : Docker Lab (part 2)
 E/15/140
 --------------------------------------------------
 
-Answers:
+
+Please be kind enough to put a public message to all, if the questions are changing. I downloaded the questions at the day they had uploaded and completed the lab as soon as possible and submitted.
+
+I had noticed the questions were changed when one friend asks about a question from the last question. 
+Then I had to go through the whole lab for the modifications, with additional 1.5 hours.
+
+--------------------------------------------------
+Answers (first version):
+--------------------------------------------------
 
 1. Use the ‘docker build’ command to build an image and run ‘app1.js’. Ensure it is built successfully by doing ‘docker image ls’. Now run it and ensure it works by accessing http://localhost:3000.
 
 sudo docker build ./ -t co328/app1
 sudo docker run container -p 3000:3000 -d co328/app1
-
-
 
 
 
@@ -26,8 +32,6 @@ nano Dockerfile
 	CMD ["node", "app2.js"]
 
 sudo docker build ./ -t co328/app2
-
-
 
 
 
@@ -47,8 +51,6 @@ sudo docker container run -p 3000:3000 -d --env-file ./env co328/app2
 
 
 
-
-
 4. ‘app3.js’ requires the express.js module. Run the ‘npm install express’ command to install the necessary modules when building the image. You can set the same environment variables as app2.js to change the message and background colour at run time.
 
 nano Dockerfile
@@ -60,8 +62,6 @@ nano Dockerfile
 
 sudo docker build ./ -t co328/app3
 sudo docker container run -p 3000:3000 -d --env-file ./env co328/app3
-
-
 
 
 
@@ -80,15 +80,11 @@ sudo docker container run -p 3000:3000 -d co328/app4
 
 
 
-
-
 6. Stop the container you ran in (5) and remove the stopped container using the ‘docker container rm’ command. Now start a new container of the ‘app4.js’ image. Try to access the file you uploaded in (5.) Explain the reason why the file is not accessible.
 
 It gives an error message, which says, the requested file is not found.
 
 This is because the docker creates a virtual file system (know as volume) when it is mounted and once the docker container is removed, that ‘volume’ also removed.
-
-
 
 
 
@@ -100,3 +96,106 @@ The following command maps the upload directory of the docker container with the
 
 sudo docker container run -p 3000:3000 -f -v /var/dockerFiles:/upload co328/app4
 
+
+
+--------------------------------------------------
+Answers (current version):
+--------------------------------------------------
+
+1. Use the ‘docker build’ command to build an image and run ‘app1.js’. Ensure it is built successfully by doing ‘docker image ls’. Now run it and ensure it works by accessing http://localhost:3000.
+
+sudo docker build ./ -t co328/app1
+sudo docker run container -p 3000:3000 -d co328/app1
+
+
+
+2. Now write a Dockerfile for ‘app2.js’ using the Dockerfile for ‘app1.js’ as a starting point. The provided Dockerfile copies files to the root directory of the image. Modify it to copy application files to the ‘/app’ directory within the image.
+
+nano Dockerfile
+	FROM node:latest
+	COPY . ./app
+	RUN npm install http
+	ENV message='Hello World !'
+	ENV colour=red
+	EXPOSE 3000
+	CMD ["node", "./app2.js"]
+
+sudo docker build ./ -t co328/app2
+sudo docker run -p 3000:3000 -d co328/app2
+
+
+
+3. ‘app2.js’ can be passed two arguments, ‘message’ and ‘colour’ as environment variables. Show how you can set the message and colour variables when running this docker image (without changing the code given.)
+
+We can provide the environment variables as a command-line argument like the following:
+
+sudo docker run -p 3000:3000 -d -e message=”Hello world” -e colour=”red” co328/app2
+
+Or we can create a file as env in the directory same as Dockerfile locates and add environment variables to it and run the docker container with --env-file option as follows:
+
+nano env
+	message=SampleMessage
+	colour=red
+
+sudo docker container run -p 3000:3000 -d --env-file ./env co328/app2
+
+
+
+4. ‘app3.js’ requires the modules in package.json to be installed. Use the ‘npm’ command to install the necessary modules when building the image. You can set the same environment variables as app2.js to change the message and background colour at run time like ‘app2.js’.
+
+nano Dockerfile
+	FROM node:latest
+	COPY . .
+	RUN npm install
+	ENV message='Hello World !'
+	ENV colour=red
+	EXPOSE 3000
+	CMD ["node", "app3.js"]
+
+sudo docker build ./ -t co328/app3
+sudo docker run -p 3000:3000 -d co328/app3
+
+
+
+5. Write a Dockerfile for ‘app4.js’ installing the required modules. Run the image and upload a file. Verify that the file was uploaded by visiting http://localhost:3000/upload/filename (e.g. http://localhost:3000/upload/photo.jpg.)
+
+nano Dockerfile
+	FROM node:latest
+	COPY . .
+	RUN npm install 
+	EXPOSE 3000
+	CMD ["mkdir", "upload"]
+	CMD ["node", "app4.js"]
+
+sudo docker build ./ -t co328/app4
+sudo docker container run -p 3000:3000 -d co328/app4
+
+
+
+6. Stop the container you ran in (5) and remove the stopped container using the ‘docker container rm’ command. Now start a new container of the ‘app4.js’ image. Try to access the file you uploaded in (5.) Explain the reason why the file is not accessible.
+
+It gives an error message, which says, the requested file is not found.
+
+This is because the docker creates a virtual file system (know as volume) when it is mounted and once the docker container is removed, that ‘volume’ also removed.
+
+
+
+7. Create a volume to hold uploads using ‘docker volume create’. Now show how ‘app4.js’ can be run with the volume mounted. Verify that the uploaded files are available after the container is removed and a new one is started (with the volume mounted.)
+
+We can map a physical directory with a directory in a container. ‘docker volume create‘ command creates a filesystem on the host machine, which can be map to Docker containers using -v flag as follows:
+
+sudo docker volume create app4upload
+sudo docker run -p 3000:3000 -d -v app4upload:./upload
+
+Furthermore, we can get details about the created volume using the following command:
+sudo docker volume inspect <volume name> 
+
+
+
+8. Create an account on Docker Hub. Upload the image you created for ‘app4.js’ to Docker Hub and provide a URL to your image.
+
+https://hub.docker.com/r/nuwanj/co328-app4
+
+Instructions used: 
+sudo docker tag <iamge id> nuwanj/co328-app4:latest
+sudo docker push nuwanj/co328-app4:latest
