@@ -1,0 +1,300 @@
+'''
+********************************************************************************
+    CO544 - lab02
+    E/15/140
+    Jaliyagoda A.J.N.M.
+********************************************************************************
+'''
+
+
+2.1 Creation
+----------------------------------------
+
+
+import numpy as np
+
+a=np.array([1,2,3])
+print(a.dtype)
+matrix = np.array ([np.arange (3), [i for i in range(1 ,4)],[6 ,7 ,8]])
+print(matrix)
+
+'''
+Results:
+   int32
+   [[0 1 2]
+   [1 2 3]
+   [6 7 8]]
+'''
+
+2.2 Initialization
+----------------------------------------
+
+import numpy as np
+
+print(np.zeros((5,2,2), dtype=float))
+
+'''
+result:
+   [[0. 0.]
+     [0. 0.]]
+    [[0. 0.]
+     [0. 0.]]
+    [[0. 0.]
+     [0. 0.]]
+    [[0. 0.]
+     [0. 0.]]
+    [[0. 0.]
+     [0. 0.]]]
+'''
+
+print(np.ones([4,5]))
+
+'''
+result:
+   [[1. 1. 1. 1. 1.]
+   [1. 1. 1. 1. 1.]
+   [1. 1. 1. 1. 1.]
+   [1. 1. 1. 1. 1.]]
+'''
+
+print(np.empty([3,3,3]))
+
+'''
+result:
+   [[[2.82894861e-277 6.32275274e+233 1.05996355e-153]
+     [1.10285787e+155 6.96383759e+227 9.77148601e-153]
+     [5.04443784e+180 1.72219190e+097 7.22762050e+159]]
+
+    [[2.19341567e-152 1.45913931e-152 6.01099941e+175]
+     [9.13596279e+242 9.29433783e+242 1.27661723e-152]
+     [4.47585684e-091 1.22903518e+243 6.80603537e+212]]
+
+    [[2.89627185e-308 1.97885580e-277 1.17549387e+214]
+     [1.06295395e-094 5.22402684e+257 7.70858888e+218]
+     [4.47585687e-091 6.99417476e-009 7.48924943e+247]]]
+'''
+
+print(np.arange(2,10,2))
+# -> [2 4 6 8]
+
+print(np.arange(2,10,1).reshape(2,4))
+# -> [ [2 3 4 5]
+#      [6 7 8 9] ]
+
+print(np.full([2,3], 4))
+# -> [ [4 4 4]
+#      [4 4 4] ]
+
+ print(np.eye(3))
+# [[1. 0. 0.]
+#  [0. 1. 0.]
+#  [0. 0. 1.]]
+
+print(np.linspace(2,10,5))
+# [ 2.  4.  6.  8. 10.]
+
+
+
+2.3 Copying, Sorting, Slicing
+----------------------------------------
+
+import numpy as np
+
+matrix = np.array([ np.arange(3), [x for x in range(4,7)], [7,8,9] ])
+print(matrix)
+
+m1 = np.copy(matrix)
+m2 = matrix.copy() # deap copy
+m3 = matrix.view() # shallow copy
+
+matrix[1][1] = 0
+
+'''
+>>> print(m1)
+   [[0 1 2]
+    [4 5 6]
+    [7 8 9]]
+>>> print(m2)
+   [[0 1 2]
+    [4 5 6]
+    [7 8 9]]
+>>> print(m3)
+   [[0 1 2]
+    [4 0 6]
+    [7 8 9]]
+'''
+
+import numpy as np
+
+matrix = np.array([ np.arange(3), [x for x in range(20,17,-1)], [17,8,9] ])
+matrix.sort(axis=0)
+print(matrix)
+print(matrix[0:, :1])
+print(matrix[1:, 1:])
+
+'''
+>>> print(matrix)
+   [[ 0  1  2]
+    [17  8  9]
+    [20 19 18]]
+>>> print(matrix[0:, :1])
+   [[ 0]
+    [17]
+    [20]]
+>>> print(matrix[1:, 1:])
+   [[ 8  9]
+    [19 18]]
+'''
+
+
+2.3 Copying, Sorting, Slicing
+----------------------------------------
+
+import numpy as np
+matrix = np.array([np.arange(0,100)]).reshape(10,10)[0:6, 0:6]
+print(matrix)
+
+'''
+>>> matrix [1,0]
+10
+
+>>> matrix [0] = 42
+>>> matrix [1:3]
+array([[10, 11, 12, 13, 14, 15],
+       [20, 21, 22, 23, 24, 25]])
+
+>>> matrix []
+
+>>> matrix [1:]
+array([[10, 11, 12, 13, 14, 15],
+       [20, 21, 22, 23, 24, 25],
+       [30, 31, 32, 33, 34, 35],
+       [40, 41, 42, 43, 44, 45],
+       [50, 51, 52, 53, 54, 55]])
+
+>>> matrix [1:100]
+array([[10, 11, 12, 13, 14, 15],
+       [20, 21, 22, 23, 24, 25],
+       [30, 31, 32, 33, 34, 35],
+       [40, 41, 42, 43, 44, 45],
+       [50, 51, 52, 53, 54, 55]])
+
+>>> matrix [:]
+    array([[42, 42, 42, 42, 42, 42],
+           [10, 11, 12, 13, 14, 15],
+           [20, 21, 22, 23, 24, 25],
+           [30, 31, 32, 33, 34, 35],
+           [40, 41, 42, 43, 44, 45],
+           [50, 51, 52, 53, 54, 55]])
+
+>>> matrix [1: ,:2]
+    array([[10, 11],
+           [20, 21],
+           [30, 31],
+           [40, 41],
+           [50, 51]])
+
+>>> matrix[:2, 1:]
+    array([[ 1,  2,  3,  4,  5],
+           [11, 12, 13, 14, 15]])
+
+>>> matrix.ravel ()
+    array([42, 42, 42, 42, 42, 42, 10, 11, 12, 13, 14, 15, 20, 21, 22, 23, 24,
+           25, 30, 31, 32, 33, 34, 35, 40, 41, 42, 43, 44, 45, 50, 51, 52, 53,
+           54, 55])
+
+>>> matrix[: ,1].copy()
+    array([ 1, 11, 21, 31, 41, 51])
+
+>>> matrix[1].tolist()
+    [10, 11, 12, 13, 14, 15]
+
+>>> matrix.reshape(-1)
+    SyntaxError: invalid character in identifier
+'''
+
+
+2.4 Copying, Sorting, Slicing
+----------------------------------------
+
+matrix = np.array([ np.arange(3), [x for x in range(20,17,-1)], [17,8,9] ])
+matrix.sort(axis=0)
+print(matrix)
+
+'''
+>>> np.sqrt(matrix)
+    array([[0.        , 1.        , 1.41421356],
+           [4.47213595, 4.35889894, 4.24264069],
+           [4.12310563, 2.82842712, 3.        ]])
+
+>>> np.exp(matrix)
+    array([[1.00000000e+00, 2.71828183e+00, 7.38905610e+00],
+           [4.85165195e+08, 1.78482301e+08, 6.56599691e+07],
+           [2.41549528e+07, 2.98095799e+03, 8.10308393e+03]])
+
+>>> np.min(matrix)
+    0
+
+>>> np.max(matrix, axis=1)
+    array([ 2, 20, 17])
+
+>>> np.min(np.maximum(np.random.randn(4),np.random.randn(4)))
+    0.2955612034529498
+
+>>> np.mean(matrix)
+    10.444444444444445
+
+>>> np.mean(matrix, axis=0)
+    array([12.33333333,  9.33333333,  9.66666667])
+
+>>> np.sum(matrix)
+    94
+
+>>> np.invert(matrix)
+    array([[ -1,  -2,  -3],
+           [-21, -20, -19],
+           [-18,  -9, -10]], dtype=int32)
+
+>>> np.random.randn(5)
+    array([ 0.55671468,  0.34096437,  0.28997603, -0.77791551, -0.42557608])
+
+>>> np.trace(matrix)
+    28
+'''
+
+2.4.1 Implement random walk
+----------------------------------------
+
+import numpy as np
+
+class RandomWalk :
+
+    def __init__(self, position):
+        self.position = position
+
+    def stepsGenerator(self, stepCount):
+        return np.random.randn(stepCount)
+
+    def walk(self):
+        start=self.position
+        path=[]
+        path=[start]
+        stepCount = 500
+        steps = self.stepsGenerator(stepCount)
+
+        for s in steps:
+            go = 1 if(s>0) else -1
+            path.append(path[-1] + go)
+
+        return path
+
+
+random_walker = RandomWalk(200)
+print(random_walker.walk())
+
+
+
+
+
+
+.

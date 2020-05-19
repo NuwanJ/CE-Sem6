@@ -1,0 +1,524 @@
+'''
+********************************************************************************
+    CO544 - lab02
+    E/15/140
+    Jaliyagoda A.J.N.M.
+********************************************************************************
+'''
+
+
+# ------------------------------------------------------------------------------
+# 4.2.1 Creating Series and Data Frames
+# ------------------------------------------------------------------------------
+
+import pandas as pd
+
+# create a series with a list
+s = pd.Series( [1,4,-2,'home'], index=['a', 'b', 'c', 'd'])
+
+'''
+>>> print(s)
+    a       1
+    b       4
+    c      -2
+    d    home
+    dtype: object
+
+>>> print(type(s))
+    <class 'pandas.core.series.Series'>
+'''
+
+# ToDo 1: What is the data type of s? Can it be changed?
+'''
+The data type of s is 'pandas.core.series.Series' or simply an 'object'
+We can change the data type of 's' using following method.
+    s.astype(<new data type>)
+'''
+
+# ------------------------------------------------------------------------------
+# 4.2.2 Accessing and modifying
+# ------------------------------------------------------------------------------
+
+import pandas as pd
+import numpy as np
+
+s = pd.Series( [1,4,-2,'home'], index=['a', 'b', 'c', 'd'])
+data = {'population': [1.5,1.2,2.0,1.4,0.8],
+        'state': ['Nevada', 'Florida', 'Ohio', 'Texas', 'Florida'],
+        'year': [2003,2000,2004,1990,1994]
+        }
+df = pd.DataFrame(data,
+        index=['one', 'two', 'three', 'four', 'five'],
+        columns=['year', 'state', 'population', 'debt'])
+
+'''
+>>> s
+    a       1
+    b       4
+    c      -2
+    d    home
+    dtype: object
+
+>>> s[1:3]
+    b     4
+    c    -2
+    dtype: object
+
+>>> s[0]
+    1
+
+>>> s['d']
+    'home'
+
+>>> s.values[2:]
+    array([-2, 'home'], dtype=object)
+
+>>> df
+           year    state  population debt
+    one    2003   Nevada         1.5  NaN
+    two    2000  Florida         1.2  NaN
+    three  2004     Ohio         2.0  NaN
+    four   1990    Texas         1.4  NaN
+    five   1994  Florida         0.8  NaN
+
+>>> df[['population','state']]
+           population    state
+    one           1.5   Nevada
+    two           1.2  Florida
+    three         2.0     Ohio
+    four          1.4    Texas
+    five          0.8  Florida
+
+>>> df.population
+    one      1.5
+    two      1.2
+    three    2.0
+    four     1.4
+    five     0.8
+    Name: population, dtype: float64
+
+>>> df.iloc[1:]
+           year    state  population debt
+    two    2000  Florida         1.2  NaN
+    three  2004     Ohio         2.0  NaN
+    four   1990    Texas         1.4  NaN
+    five   1994  Florida         0.8  NaN
+
+>>> df.iloc[2:4:,2:5]
+           population debt
+    three         2.0  NaN
+    four          1.4  NaN
+
+>>> df.loc['one']
+    year            2003
+    state         Nevada
+    population       1.5
+    debt             NaN
+    Name: one, dtype: object
+
+>>> df.debt=34.67
+           year    state  population   debt
+    one    2003   Nevada         1.5  34.67
+    two    2000  Florida         1.2  34.67
+    three  2004     Ohio         2.0  34.67
+    four   1990    Texas         1.4  34.67
+    five   1994  Florida         0.8  34.67
+
+>>> df.debt=[df.iloc[:,2][i]*5 for i in range(0,df.shape[0])]
+            #  debt = 5*population
+
+           year    state  population  debt
+    one    2003   Nevada         1.5   7.5
+    two    2000  Florida         1.2   6.0
+    three  2004     Ohio         2.0  10.0
+    four   1990    Texas         1.4   7.0
+    five   1994  Florida         0.8   4.0
+
+>>> df.head()       # view first 5 lines
+           year    state  population  debt
+    one    2003   Nevada         1.5   7.5
+    two    2000  Florida         1.2   6.0
+    three  2004     Ohio         2.0  10.0
+    four   1990    Texas         1.4   7.0
+    five   1994  Florida         0.8   4.0
+
+>>> df.tail(2)      # view last 2 lines
+          year    state  population  debt
+    four  1990    Texas         1.4   7.0
+    five  1994  Florida         0.8   4.0
+
+>>> df.sample(n=3)  # Return n=2 random sample of items from an axis of object.
+          year    state  population  debt
+    two   2000  Florida         1.2   6.0
+    one   2003   Nevada         1.5   7.5
+    five  1994  Florida         0.8   4.0
+
+>>> df['newColomn'] = pd.Series(np.random.randn(df.shape[0]),index=df.index)
+>>> df
+           year    state  population  debt  newColomn
+    one    2003   Nevada         1.5   7.5  -0.459592
+    two    2000  Florida         1.2   6.0   0.405195
+    three  2004     Ohio         2.0  10.0  -1.002886
+    four   1990    Texas         1.4   7.0   1.998985
+    five   1994  Florida         0.8   4.0  -0.572731
+
+>>> df.drop_duplicates('state')
+           year    state  population  debt  newColomn
+    one    2003   Nevada         1.5   7.5  -0.459592
+    two    2000  Florida         1.2   6.0   0.405195
+    three  2004     Ohio         2.0  10.0  -1.002886
+    four   1990    Texas         1.4   7.0   1.998985
+
+>>> df.state
+    one       Nevada
+    two      Florida
+    three       Ohio
+    four       Texas
+    five     Florida
+    Name: state, dtype: object
+
+'''
+
+# ------------------------------------------------------------------------------
+# Loading data from CSV file
+# ------------------------------------------------------------------------------
+
+import numpy as np
+import pandas as pd
+
+df = pd.read_csv('sampleDataset.csv')
+dff = pd.read_csv('sampleDataset.csv', names=['a','b','c','d','e','f','g','h','i'])
+
+print(df)
+print('\n\n')
+print(dff)
+
+# TODO2: Comment on the shape of the data frame with and without setting names.
+'''
+Without setting names, it just shows the data as follows, by assumming the first line of the CSV as the names for each column.
+        5.1  0.222222222       3.5     0.625       1.4  0.06779661   0.2  0.041666667     setosa
+    0   4.9     0.166667  3.000000  0.416667  1.400000    0.067797  0.20  0.041666667     setosa
+    1   4.7     0.111111  3.200000  0.500000  1.300000         NaN  0.20  0.041666667     setosa
+    2   4.6     0.083333  3.100000  0.458333  1.500000    0.084746  0.20  0.041666667     setosa
+    3   NaN     0.194444  3.600000  0.666667  1.400000         NaN  0.20  0.041666667     setosa
+    4   NaN     0.305556  3.900000  0.791667  1.700000    0.118644  0.40        0.125     setosa
+    ..  ...       ...       ...       ...       ...       ...   ...          ...        ...
+    98  6.3     0.555556  2.800000  0.333333  5.100000    0.694915  1.50  0.583333333  virginica
+
+But if we assigned names for each column, it appear like following:
+
+          a         b         c         d         e         f     g            h          i
+    0   5.1  0.222222  3.500000  0.625000  1.400000  0.067797  0.20  0.041666667     setosa
+    1   4.9  0.166667  3.000000  0.416667  1.400000  0.067797  0.20  0.041666667     setosa
+    2   4.7  0.111111  3.200000  0.500000  1.300000       NaN  0.20  0.041666667     setosa
+    3   4.6  0.083333  3.100000  0.458333  1.500000  0.084746  0.20  0.041666667     setosa
+    ..  ...       ...       ...       ...       ...       ...   ...          ...        ...
+    99  6.3  0.555556  2.800000  0.333333  5.100000  0.694915  1.50  0.583333333  virginica
+'''
+
+# ------------------------------------------------------------------------------
+# 4.2.4 Dealing with missing values.
+# ------------------------------------------------------------------------------
+
+import numpy as np
+import pandas as pd
+
+df = pd.read_csv('sampleDataset.csv', names=['a','b','c','d','e','f','g','h','i'])
+print(df)
+
+'''
+>>> df.isnull().g           # shows isNull(columns.g)
+    0     False
+    1     False
+    2     False
+    3     False
+    4     False
+          ...
+    95    False
+    96    False
+    97    False
+    98    False
+    99    False
+    Name: g, Length: 100, dtype: bool
+
+>>> df.isnull().sum(0)      # number of nulls in each column
+    a    4
+    b    1
+    c    0
+    d    3
+    e    2
+    f    2
+    g    1
+    h    1
+    i    1
+
+>>> df=df[df.isnull().a != True]    # remove colums where a=null
+          a         b         c         d         e         f     g            h          i
+    0   5.1  0.222222  3.500000  0.625000  1.400000  0.067797  0.20  0.041666667     setosa
+    1   4.9  0.166667  3.000000  0.416667  1.400000  0.067797  0.20  0.041666667     setosa
+    2   4.7  0.111111  3.200000  0.500000  1.300000       NaN  0.20  0.041666667     setosa
+    3   4.6  0.083333  3.100000  0.458333  1.500000  0.084746  0.20  0.041666667     setosa
+    7   5.0  0.194444  3.400000       NaN  1.500000  0.084746  0.20  0.041666667     setosa
+    ..  ...       ...       ...       ...       ...       ...   ...          ...        ...
+    99  6.3  0.555556  2.800000  0.333333  5.100000  0.694915  1.50  0.583333333  virginica
+
+>>> df.dropna(axis=0).isnull().sum()    # drop missing values
+    a    0
+    b    0
+    c    0
+    d    0
+    e    0
+    f    0
+    g    0
+    h    0
+    i    0
+    dtype: int64
+
+>>> df.dropna(axis=1)       # remove columns with empty values
+               c
+    0   3.500000
+    1   3.000000
+    2   3.200000
+    3   3.100000
+    4   3.600000
+    ..       ...
+    95  3.000000
+    96  0.333333
+    97  3.800000
+    98  2.800000
+    99  2.800000
+
+>>> df.dropna(axis=1, how='all')    # remove column only if all of the data missing on that column
+          a         b         c         d         e         f     g            h          i
+    0   5.1  0.222222  3.500000  0.625000  1.400000  0.067797  0.20  0.041666667     setosa
+    1   4.9  0.166667  3.000000  0.416667  1.400000  0.067797  0.20  0.041666667     setosa
+    2   4.7  0.111111  3.200000  0.500000  1.300000       NaN  0.20  0.041666667     setosa
+    3   4.6  0.083333  3.100000  0.458333  1.500000  0.084746  0.20  0.041666667     setosa
+    4   NaN  0.194444  3.600000  0.666667  1.400000       NaN  0.20  0.041666667     setosa
+    ..  ...       ...       ...       ...       ...       ...   ...          ...        ...
+    99  6.3  0.555556  2.800000  0.333333  5.100000  0.694915  1.50  0.583333333  virginica
+
+>>> df.dropna(axis=1, thresh=1)     # remove only missing value columns if there ins't 'threshold' number of values.
+          a         b         c         d         e         f     g            h          i
+    0   5.1  0.222222  3.500000  0.625000  1.400000  0.067797  0.20  0.041666667     setosa
+    1   4.9  0.166667  3.000000  0.416667  1.400000  0.067797  0.20  0.041666667     setosa
+    2   4.7  0.111111  3.200000  0.500000  1.300000       NaN  0.20  0.041666667     setosa
+    3   4.6  0.083333  3.100000  0.458333  1.500000  0.084746  0.20  0.041666667     setosa
+    4   NaN  0.194444  3.600000  0.666667  1.400000       NaN  0.20  0.041666667     setosa
+    ..  ...       ...       ...       ...       ...       ...   ...          ...        ...
+    99  6.3  0.555556  2.800000  0.333333  5.100000  0.694915  1.50  0.583333333  virginica
+
+>>> df.drop('i',axis=1)             # drop the column 'i'
+          a         b         c         d         e         f     g            h
+    0   5.1  0.222222  3.500000  0.625000  1.400000  0.067797  0.20  0.041666667
+    1   4.9  0.166667  3.000000  0.416667  1.400000  0.067797  0.20  0.041666667
+    ..  ...       ...       ...       ...       ...       ...   ...          ...
+
+>>> df.fillna(899)                  # replace missing values with 899
+            a           b         c         d         e           f     g            h          i
+    0     5.1    0.222222  3.500000  0.625000  1.400000    0.067797  0.20  0.041666667     setosa
+    1     4.9    0.166667  3.000000  0.416667  1.400000    0.067797  0.20  0.041666667     setosa
+    2     4.7    0.111111  3.200000  0.500000  1.300000  899.000000  0.20  0.041666667     setosa
+    3     4.6    0.083333  3.100000  0.458333  1.500000    0.084746  0.20  0.041666667     setosa
+    4   899.0    0.194444  3.600000  0.666667  1.400000  899.000000  0.20  0.041666667     setosa
+    ..    ...         ...       ...       ...       ...         ...   ...          ...        ...
+
+>>> df.fillna(method='ffill')       # fill last valid value into missing attribute
+          a         b         c         d         e         f     g            h          i
+    0   5.1  0.222222  3.500000  0.625000  1.400000  0.067797  0.20  0.041666667     setosa
+    1   4.9  0.166667  3.000000  0.416667  1.400000  0.067797  0.20  0.041666667     setosa
+    2   4.7  0.111111  3.200000  0.500000  1.300000  0.067797  0.20  0.041666667     setosa
+    3   4.6  0.083333  3.100000  0.458333  1.500000  0.084746  0.20  0.041666667     setosa
+    4   4.6  0.194444  3.600000  0.666667  1.400000  0.084746  0.20  0.041666667     setosa
+    ..  ...       ...       ...       ...       ...       ...   ...          ...        ...
+    99  6.3  0.555556  2.800000  0.333333  5.100000  0.694915  1.50  0.583333333  virginica
+
+>>> df.replace(6.3,600)
+            a         b         c         d         e         f     g            h          i
+    0     5.1  0.222222  3.500000  0.625000  1.400000  0.067797  0.20  0.041666667     setosa
+    1     4.9  0.166667  3.000000  0.416667  1.400000  0.067797  0.20  0.041666667     setosa
+    2     4.7  0.111111  3.200000  0.500000  1.300000       NaN  0.20  0.041666667     setosa
+    3     4.6  0.083333  3.100000  0.458333  1.500000  0.084746  0.20  0.041666667     setosa
+    4     NaN  0.194444  3.600000  0.666667  1.400000       NaN  0.20  0.041666667     setosa
+    ..    ...       ...       ...       ...       ...       ...   ...          ...        ...
+    99  600.0  0.555556  2.800000  0.333333  5.100000  0.694915  1.50  0.583333333  virginica
+
+>>> df.replace('.',np.nan)
+          a         b         c         d         e         f     g            h          i
+    0   5.1  0.222222  3.500000  0.625000  1.400000  0.067797  0.20  0.041666667     setosa
+    1   4.9  0.166667  3.000000  0.416667  1.400000  0.067797  0.20  0.041666667     setosa
+    2   4.7  0.111111  3.200000  0.500000  1.300000       NaN  0.20  0.041666667     setosa
+    3   4.6  0.083333  3.100000  0.458333  1.500000  0.084746  0.20  0.041666667     setosa
+    4   NaN  0.194444  3.600000  0.666667  1.400000       NaN  0.20  0.041666667     setosa
+    ..  ...       ...       ...       ...       ...       ...   ...          ...        ...
+    99  6.3  0.555556  2.800000  0.333333  5.100000  0.694915  1.50  0.583333333  virginica
+
+df[np.random.rand(df.shape[0])]=1.5
+>>> ERROR Occured
+
+'''
+
+# ------------------------------------------------------------------------------
+# 4.2.5 Applying functions
+# ------------------------------------------------------------------------------
+
+import numpy as np
+import pandas as pd
+
+df = pd.read_csv('sampleDataset.csv', names=['a','b','c','d','e','f','g','h','i'])
+
+f = lambda df: df.max()-df.min()
+#def f(x): return x.max()-x.min()
+
+df.iloc[:, 3:5].apply(f)
+
+# ------------------------------------------------------------------------------
+# 4.2.6 Group Operations
+# ------------------------------------------------------------------------------
+
+import numpy as np
+import pandas as pd
+
+df = pd.read_csv('sampleDataset.csv', names=['a','b','c','d','e','f','g','h','i'])
+
+grouped=df[['a','b','e']].groupby(df['i']) #group according to column ‘i’
+grouped.mean()
+grouped=df[['a','b','e']].groupby([df['i'],df['c']]).mean()
+grouped.unstack()
+
+'''
+>>> grouped.mean()
+                       a         b         e
+    i
+    setosa      5.034483  0.203437  1.474194
+    versicolor  6.026471  0.479575  4.315152
+    virginica   6.625000  0.641411  5.612121
+
+>>> grouped.unstack()
+                   a                                                                          ...    e
+    c            2.9   3.0       3.1       3.2  3.3       3.4       3.5  3.6   3.7  3.8  3.9  ...  3.9  4.0  4.4  2.0   2.2  2.3  2.4  2.5  2.6  2.7
+    2.8
+    i                                                                                         ...
+
+    setosa      4.40  4.75  4.766667  4.700000  5.1  5.085714  5.133333  4.6  5.25  5.4  5.4  ...  1.5  1.2  1.5  NaN   NaN  NaN  NaN  NaN  NaN  NaN
+    NaN
+    versicolor  6.14  6.20  6.800000  6.433333  6.3       NaN       NaN  NaN   NaN  NaN  NaN  ...  NaN  NaN  NaN  3.5  4.25  4.0  3.6  4.4  3.5  4.3  4
+    .52
+    virginica   6.80  6.95       NaN  6.750000  6.5       NaN       NaN  7.2   NaN  7.8  NaN  ...  NaN  NaN  NaN  NaN  5.00  NaN  NaN  5.1  6.9  5.1  5
+    .40
+
+'''
+
+# ------------------------------------------------------------------------------
+# 4.2.7 Data Summarizing
+# ------------------------------------------------------------------------------
+
+import numpy as np
+import pandas as pd
+
+df = pd.read_csv('sampleDataset.csv', names=['a','b','c','d','e','f','g','h','i'])
+
+'''
+>>> df['a'].nunique()
+    33
+
+>> df['a'].value_counts()
+    6.4    6
+    6.3    6
+    5.8    5
+    5.7    5
+    5.1    5
+    5.0    4
+    6.5    4
+    6.0    4
+    5.4    4
+    5.6    4
+    4.8    4
+    ...   ...
+
+>>> df.describe()
+                   a          b           c          d          e          f          g
+    count  96.000000  99.000000  100.000000  97.000000  98.000000  98.000000  99.000000
+    mean    5.940625   0.444264    3.016333   0.490394   3.818004   0.502540   1.200505
+    std     0.856502   0.235225    0.515756   0.604248   1.799759   0.329349   0.747462
+    min     4.300000   0.010000    0.333333   0.010000   0.864407   0.010000   0.100000
+    25%     5.200000   0.236111    2.800000   0.333333   1.600000   0.105932   0.350000
+    50%     5.900000   0.416667    3.000000   0.416667   4.500000   0.593220   1.400000
+    75%     6.500000   0.597222    3.300000   0.541667   5.100000   0.694915   1.800000
+    max     7.900000   0.999900    4.400000   6.100000   6.900000   1.900000   2.500000
+
+>>> df.mean()
+    a    5.940625
+    b    0.444264
+    c    3.016333
+    d    0.490394
+    e    3.818004
+    f    0.502540
+    g    1.200505
+    dtype: float64
+
+>>> df.sort_index().head()
+         a         b    c         d    e         f    g            h       i
+    0  5.1  0.222222  3.5  0.625000  1.4  0.067797  0.2  0.041666667  setosa
+    1  4.9  0.166667  3.0  0.416667  1.4  0.067797  0.2  0.041666667  setosa
+    2  4.7  0.111111  3.2  0.500000  1.3       NaN  0.2  0.041666667  setosa
+    3  4.6  0.083333  3.1  0.458333  1.5  0.084746  0.2  0.041666667  setosa
+    4  NaN  0.194444  3.6  0.666667  1.4       NaN  0.2  0.041666667  setosa
+
+'''
+
+# ------------------------------------------------------------------------------
+# 4.2.8 Data Visualization
+# ------------------------------------------------------------------------------
+
+import numpy as np
+import pandas as pd
+
+df = pd.DataFrame(np.random.randn(10), index=[x for x in range(0,10)], columns=['dataA'])
+df['dataB']=pd.Series(np.random.randn(10),index=df.index)
+
+df.plot(kind='hist')
+df.plot(kind='bar')
+df.boxplot()
+
+
+# ------------------------------------------------------------------------------
+# 4.3 Try Out
+# ------------------------------------------------------------------------------
+
+import numpy as np
+import pandas as pd
+from pandas.plotting import scatter_matrix
+import matplotlib.pyplot as plt
+
+# function to assign values for 'class' in df
+def f(x):
+    return 1 if((x['Chanel1'] + x['Chanel5'])/2 < ((x['Chanel2'] + x['Chanel3'] + x['Chanel4'])/3)) else 0
+
+# 1. Read CSV
+df = pd.read_csv('lab02Exercise01.csv', names=['Chanel1', 'Chanel2', 'Chanel3', 'Chanel4', 'Chanel5'])
+
+# 2. Fill missing values with column average
+df = df.fillna(df.mean())
+
+# 3. Show in scatter plot
+scatter_matrix(df , alpha =0.2 , figsize =(6, 6),diagonal='kde')
+
+# 4. Add a new class to df
+df['class'] = df.apply(f, axis=1)
+print(df)
+
+# Plot the chart
+plt.show()
+
+
+'''
+Scatter matrix outputs the correlation between each data column. (6x6 plots since there is 6 columns, diagonal contains itself)
+figsize: A tuple (width, height) in inches
+alpha: Amount of transparency applied.
+kde: Kernel Density Estimation, non-parametric way to estimate the probability density function of a random variable
+
+'''
+
+
+## -----------------------------------------------------------------------------
