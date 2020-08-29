@@ -5,6 +5,7 @@
 #include <string.h>
 #include <stdlib.h>
 #include <pthread.h>
+#include<unistd.h>
 
 void* handle_client(void*);
 
@@ -27,10 +28,14 @@ int main(){
 
    clilen = sizeof(cliaddr);
    while (1){
+      printf("Waiting for packets\n");
+
       connfd = malloc(sizeof(int));
       *connfd = accept(listenfd, (struct sockaddr *) &cliaddr, &clilen);
 
       if (*connfd < 0) error("Error on accept");
+
+      printf("Created a new thread...\n");
 
       if ( pthread_create( &client_thread, NULL, handle_client, connfd) ){
          printf("error creating thread.");
@@ -49,17 +54,20 @@ void* handle_client(void* connfd){
    char outBuffer[1000];
 
    // Read and send back the input string
-   int n = recvfrom(connfd,inBuffer,1000,0,(struct sockaddr *)&cliaddr,& clilen);
-   //sendto(connfd,inBuffer,strlen(inBuffer),0,(struct sockaddr *)&cliaddr,sizeof(cliaddr));
+   int read_size = recv(socket, inBuffer , 1000 , 0);
+   inBuffer[read_size] = '\0';
    write(socket, inBuffer, strlen(inBuffer));
+   printf("Send >> %s\n", inBuffer);
 
    // Send "Hello from the server"
-   sprintf(outBuffer, "\nHello from the server\n");
-   //sendto(connfd,outBuffer,strlen(outBuffer),0,(struct sockaddr *)&cliaddr,sizeof(cliaddr));
+   sprintf(outBuffer, "Hello from the server\n");
    write(socket, outBuffer, strlen(outBuffer));
+   printf("Send >> %s\n", outBuffer);
 
-   printf("Send a message to the client");
-
+   // Close the socket and free the memory
+   close(socket);
    free(connfd);
+   printf("Close the connection...\n\n");
+
    return NULL;
 }
