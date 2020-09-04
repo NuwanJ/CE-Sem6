@@ -12,8 +12,9 @@ E/15/140 - Jaliyagoda A.J.N.M.
 void *thread_function(void *arg){
    int a;
    for(a = 1; a <= 3; a++){
-      printf("Thread %d:%d says hi!\n", *(int *)arg, a); // ,*(int *)(arg+4)
-      sleep(1);
+      printf("Thread %d:%d says hi!\n", *(int *)arg, a);
+      //printf("Thread %d:%d says hi! (%d)\n", *(int *)arg, a,*(int *)(arg+4));
+      //sleep(1); //(Line 12)
    }
    (*(int *)arg)++;
    return NULL;
@@ -33,16 +34,11 @@ int main(void){
          printf("error joining thread.");
          abort();
       }*/
-      sleep(1);
+      sleep(1);  // (Line 35)
       //printf("\n");
    }
-   sleep(1);  // 5
+   //sleep(1);  // (Line 37)
 
    printf("Main thread says hi!\n");
    exit(0);
 }
-
-/*
-
-
-*/
