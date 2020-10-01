@@ -18,17 +18,21 @@ int simple_init(void){
 
 	struct color *c;
 	struct color *ptr;
-	c = kmalloc(sizeof(*c), GFP_KERNEL);
+	int i;
 
-	c->red = 50;
-	c->blue = 60;
-	c->green = 70;
+	for(i=0;i<4;i++){
+		c = kmalloc(sizeof(*c), GFP_KERNEL);
 
-	INIT_LIST_HEAD(&c->list);
-	list_add_tail(&c->list, &color_list);
+		c->red = 50;
+		c->blue = 60;
+		c->green = 70;
 
-	printk(KERN_INFO "Inserting colors∖n");
-	printk(KERN_INFO "Red\tGreen\tBlue");
+		INIT_LIST_HEAD(&c->list);
+		list_add_tail(&c->list, &color_list);
+	}
+
+	printk(KERN_INFO "Inserting colors");
+	printk(KERN_INFO "  Red\tGreen\tBlue");
 
 	list_for_each_entry(ptr, &color_list, list) {
 		printk(KERN_INFO "+ %d\t%d\t%d\n", ptr->red, ptr->green,ptr->blue);
@@ -39,8 +43,8 @@ int simple_init(void){
 
 void simple_exit(void){
 	struct color *ptr,*next;
-	printk(KERN_INFO "Removing colors∖n");
-	printk(KERN_INFO "Red\tGreen\tBlue");
+	printk(KERN_INFO "Removing colors");
+	printk(KERN_INFO "  Red\tGreen\tBlue");
 
 	list_for_each_entry_safe(ptr,next, &color_list, list) {
 		printk(KERN_INFO "- %d\t%d\t%d\n", ptr->red, ptr->green,ptr->blue);
