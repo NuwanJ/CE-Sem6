@@ -32,11 +32,11 @@ int proc_init(void){
 
 void proc_exit(void)
 {
-	/* removes the /proc/hello entry */
+	/* removes the /proc/seconds entry */
 	remove_proc_entry(PROC_NAME, NULL);
 }
 
-/* This function is called each time /proc/hello is read */
+/* This function is called each time /proc/seconds is read */
 ssize_t proc_read(struct file *file, char __user *usr_buf,size_t count, loff_t *pos)
 {
 	int rv = 0;
@@ -48,7 +48,7 @@ ssize_t proc_read(struct file *file, char __user *usr_buf,size_t count, loff_t *
 		return 0;
 	}
 	completed = 1;
-	rv = sprintf(buffer, "%lu", (jiffies-start_time)/HZ);
+	rv = sprintf(buffer, "Time: %lu seconds\n\n", (jiffies-start_time)/HZ);
 	
 	/* copies kernel space buffer to user space usrbuf */
 	copy_to_user(usr_buf, buffer, rv);
@@ -58,5 +58,5 @@ module_init(proc_init);
 module_exit(proc_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_DESCRIPTION("Hello Module");
+MODULE_DESCRIPTION("Seconds Module");
 MODULE_AUTHOR("SGG");
