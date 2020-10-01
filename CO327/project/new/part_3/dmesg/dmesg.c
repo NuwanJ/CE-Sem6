@@ -2,7 +2,7 @@
 #include <linux/module.h>
 #include <linux/kernel.h>
 #include <linux/list.h>
-#include <linux/types.h> 
+#include <linux/types.h>
 #include<linux/slab.h>
 
 struct color {
@@ -13,38 +13,37 @@ struct color {
 };
 
 static LIST_HEAD(color_list);
-/* This function is called when the module is loaded. */
 
 int simple_init(void){
 
 	struct color *c;
 	struct color *ptr;
 	c = kmalloc(sizeof(*c), GFP_KERNEL);
-	c->red = 40;
-	c->blue = 50;
-	c->green = 100;
-	
+
+	c->red = 50;
+	c->blue = 60;
+	c->green = 70;
+
 	INIT_LIST_HEAD(&c->list);
 	list_add_tail(&c->list, &color_list);
 
-	printk(KERN_INFO "Inserting list items∖n");
-	printk(KERN_INFO "RED\tGREEN\tBLUE");
+	printk(KERN_INFO "Inserting colors∖n");
+	printk(KERN_INFO "Red\tGreen\tBlue");
+
 	list_for_each_entry(ptr, &color_list, list) {
-		printk(KERN_INFO "%d\t%d\t%d\n", ptr->red, ptr->green,ptr->blue);
+		printk(KERN_INFO "+ %d\t%d\t%d\n", ptr->red, ptr->green,ptr->blue);
 	}
-	
 
 	return 0;
 }
 
-/* This function is called when the module is removed. */
-void simple_exit(void)
-{
+void simple_exit(void){
 	struct color *ptr,*next;
-	printk(KERN_INFO "Removing list items∖n");
-	
+	printk(KERN_INFO "Removing colors∖n");
+	printk(KERN_INFO "Red\tGreen\tBlue");
+
 	list_for_each_entry_safe(ptr,next, &color_list, list) {
-		printk(KERN_INFO "%d\t%d\t%d\n", ptr->red, ptr->green,ptr->blue);
+		printk(KERN_INFO "- %d\t%d\t%d\n", ptr->red, ptr->green,ptr->blue);
 		list_del(&ptr->list);
 		kfree(ptr);
 	}
@@ -55,5 +54,5 @@ module_init(simple_init);
 module_exit(simple_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_DESCRIPTION("Simple Module");
+MODULE_DESCRIPTION("Color Module");
 MODULE_AUTHOR("SGG");

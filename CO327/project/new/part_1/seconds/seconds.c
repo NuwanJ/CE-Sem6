@@ -18,45 +18,35 @@ static struct file_operations proc_ops ={
 	.read = proc_read,
 };
 
-/* This function is called when the module is loaded. */
-
 int proc_init(void){
-
-	/* creates the /proc/hello entry */
 	start_time = jiffies;
 	proc_create(PROC_NAME, 0666, NULL, &proc_ops);
 	return 0;
 }
 
-/* This function is called when the module is removed. */
-
-void proc_exit(void)
-{
-	/* removes the /proc/hello entry */
+void proc_exit(void){
 	remove_proc_entry(PROC_NAME, NULL);
 }
 
-/* This function is called each time /proc/hello is read */
-ssize_t proc_read(struct file *file, char __user *usr_buf,size_t count, loff_t *pos)
-{
+ssize_t proc_read(struct file *file, char __user *usr_buf,size_t count, loff_t *pos){
 	int rv = 0;
 	char buffer[BUFFER_SIZE];
 	static int completed = 0;
-	
+
 	if (completed){
 		completed = 0;
 		return 0;
 	}
 	completed = 1;
 	rv = sprintf(buffer, "%lu", (jiffies-start_time)/HZ);
-	
-	/* copies kernel space buffer to user space usrbuf */
+
 	copy_to_user(usr_buf, buffer, rv);
 	return rv;
 }
+
 module_init(proc_init);
 module_exit(proc_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_DESCRIPTION("Hello Module");
+MODULE_DESCRIPTION("Seconds Module");
 MODULE_AUTHOR("SGG");

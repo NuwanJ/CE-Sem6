@@ -11,11 +11,13 @@ void dfs(struct task_struct *task)
 {
 	struct task_struct *task_next;
 	struct list_head *list;
-	
+
+	printk(KERN_INFO "PID\tState\tComm");
+
 	list_for_each(list, &task->children) {
 		task_next = list_entry(list, struct task_struct, sibling);
 		printk(KERN_INFO "%d\t%ld\t%s", task_next->pid,task_next->state,task_next->comm);
-		dfs(task_next);	
+		dfs(task_next);
 	}
 }
 
