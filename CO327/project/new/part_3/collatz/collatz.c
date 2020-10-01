@@ -31,12 +31,9 @@ int simple_init(void){
 		INIT_LIST_HEAD(&l->list);
 		list_add_tail(&l->list, &collatz_list);
 
-		// Number generator
-		if(n & 1){
-			n = 3*n + 1;
-		} else{
-			n = n/2;
-		}
+		// Collatz number generator
+		if(n%2==1) n = 3*n + 1;
+		else n = n/2;
 	}
 
 	l = kmalloc(sizeof(*l), GFP_KERNEL);
