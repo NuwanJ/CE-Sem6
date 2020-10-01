@@ -22,5 +22,5 @@ module_init(simple_init);
 module_exit(simple_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_DESCRIPTION("Simple Module");
+MODULE_DESCRIPTION("Linear Process List Module");
 MODULE_AUTHOR("SGG");

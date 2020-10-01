@@ -5,6 +5,8 @@
 #include <linux/types.h>
 #include<linux/slab.h>
 
+#define COUNT 4
+
 struct color {
 	int red;
 	int blue;
@@ -20,7 +22,7 @@ int simple_init(void){
 	struct color *ptr;
 	int i;
 
-	for(i=0;i<4;i++){
+	for(i=0;i<COUNT;i++){
 		c = kmalloc(sizeof(*c), GFP_KERNEL);
 
 		c->red = 50;
@@ -53,7 +55,6 @@ void simple_exit(void){
 	}
 }
 
-/* Macros for registering module entry and exit points. */
 module_init(simple_init);
 module_exit(simple_exit);
 

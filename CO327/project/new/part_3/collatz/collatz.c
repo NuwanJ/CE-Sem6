@@ -7,7 +7,7 @@
 #include<linux/moduleparam.h>
 #include <linux/delay.h>
 
-static int start = 25;
+static int start = 25; // Default start value
 
 module_param(start, int, 0);
 
@@ -23,7 +23,7 @@ int simple_init(void){
 	struct collatz *ptr;
 	struct collatz *l;
 
-	printk(KERN_INFO "Generating Collatz\n");
+	printk(KERN_INFO "Generating Collatz");
 
 	while( n != 1){
 		l = kmalloc(sizeof(*l), GFP_KERNEL);
@@ -41,7 +41,7 @@ int simple_init(void){
 	list_add_tail(&l->list, &collatz_list);
 	mdelay(100);
 
-	printk(KERN_INFO "Traversing Collatz\n");
+	printk(KERN_INFO "Traversing Collatz");
 	list_for_each_entry(ptr, &collatz_list, list) {
 		printk(KERN_INFO "%d\n", ptr->data);
 	}

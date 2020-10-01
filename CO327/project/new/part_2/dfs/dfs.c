@@ -24,16 +24,13 @@ int simple_init(void){
 	return 0;
 }
 
-/* This function is called when the module is removed. */
-void simple_exit(void)
-{
+void simple_exit(void){
 	printk(KERN_INFO "Removing Kernel Module, DFS∖n");
 }
 
-/* Macros for registering module entry and exit points. */
 module_init(simple_init);
 module_exit(simple_exit);
 
 MODULE_LICENSE("GPL");
-MODULE_DESCRIPTION("D Module");
+MODULE_DESCRIPTION("DFS Process List Module");
 MODULE_AUTHOR("SGG");
