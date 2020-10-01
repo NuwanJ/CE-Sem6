@@ -32,7 +32,7 @@ ssize_t proc_read(struct file *file, char __user *usr_buf,size_t count, loff_t *
 		return 0;
 	}
 	completed = 1;
-	rv = sprintf(buffer, "%lu", jiffies);
+	rv = sprintf(buffer, "%lu\n", jiffies);
 
 	copy_to_user(usr_buf, buffer, rv);
 	return rv;

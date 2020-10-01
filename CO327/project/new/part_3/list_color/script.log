@@ -1,0 +1,44 @@
+Script started on 2020-10-01 23:18:05+0530
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/list_color[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/list_color[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/list_color[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/list_color[00m$ make
+make -C /lib/modules/4.15.0-20-generic/build M=/home/nuwan/CE-Sem6/CO327/project/new/part_3/list_color modules
+make[1]: Entering directory '/usr/src/linux-headers-4.15.0-20-generic'
+  Building modules, stage 2.
+  MODPOST 1 modules
+make[1]: Leaving directory '/usr/src/linux-headers-4.15.0-20-generic'
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/list_color[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/list_color[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/list_color[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/list_color[00m$ \[K
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/list_color[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/list_color[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/list_color[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/list_color[00m$ sudo insmod list_color.ko
+[sudo] password for nuwan: 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/list_color[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/list_color[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/list_color[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/list_color[00m$ dmesg
+[32m[ 5033.179748] [0mRemoving Kernel Module, DFS∖n
+[32m[ 5127.617447] [0mInserting colors
+[32m[ 5127.617449] [0m  Red	Green	Blue
+[32m[ 5127.617452] [0m+ 50	70	60
+[32m[ 5127.617455] [0m+ 50	70	60
+[32m[ 5127.617458] [0m+ 50	70	60
+[32m[ 5127.617461] [0m+ 50	70	60
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/list_color[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/list_color[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/list_color[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/list_color[00m$ sudo rmmod list_color 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/list_color[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/list_color[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/list_color[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/list_color[00m$ sudo dmesg -c
+[32m[ 5033.179748] [0mRemoving Kernel Module, DFS∖n
+[32m[ 5127.617447] [0mInserting colors
+[32m[ 5127.617449] [0m  Red	Green	Blue
+[32m[ 5127.617452] [0m+ 50	70	60
+[32m[ 5127.617455] [0m+ 50	70	60
+[32m[ 5127.617458] [0m+ 50	70	60
+[32m[ 5127.617461] [0m+ 50	70	60
+[32m[ 5151.536586] [0mRemoving colors
+[32m[ 5151.536589] [0m  Red	Green	Blue
+[32m[ 5151.536592] [0m- 50	70	60
+[32m[ 5151.536594] [0m- 50	70	60
+[32m[ 5151.536596] [0m- 50	70	60
+[32m[ 5151.536598] [0m- 50	70	60
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/list_color[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/list_color[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/list_color[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/list_color[00m$ exit
+exit
+
+Script done on 2020-10-01 23:18:56+0530

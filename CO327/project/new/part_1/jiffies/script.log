@@ -1,0 +1,24 @@
+Script started on 2020-10-01 23:06:19+0530
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_1/jiffies[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_1/jiffies[00m$ make
+make -C /lib/modules/4.15.0-20-generic/build M=/home/nuwan/CE-Sem6/CO327/project/new/part_1/jiffies modules
+make[1]: Entering directory '/usr/src/linux-headers-4.15.0-20-generic'
+  CC [M]  /home/nuwan/CE-Sem6/CO327/project/new/part_1/jiffies/jiffies.o
+  Building modules, stage 2.
+  MODPOST 1 modules
+  CC      /home/nuwan/CE-Sem6/CO327/project/new/part_1/jiffies/jiffies.mod.o
+  LD [M]  /home/nuwan/CE-Sem6/CO327/project/new/part_1/jiffies/jiffies.ko
+make[1]: Leaving directory '/usr/src/linux-headers-4.15.0-20-generic'
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_1/jiffies[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_1/jiffies[00m$ sudo insmao[K[Kod i[Kjiffies.ko 
+[sudo] password for nuwan: 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_1/jiffies[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_1/jiffies[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_1/jiffies[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_1/jiffies[00m$ ./[K[Kcat /proc [K/jiffies 
+4296002065
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_1/jiffies[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_1/jiffies[00m$ cat /proc/jiffies [5@sudo insmod jiffies.ko[C[1P[1P[1P[1@r[C[1@m[C[C[C[C[C[C[C[C[C[C[C[C[C[C[C[K[K[K[K
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_1/jiffies[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_1/jiffies[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_1/jiffies[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_1/jiffies[00m$ sudo rmmod jiffiescat /proc/jiffies 
+cat: /proc/jiffies: No such file or directory
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_1/jiffies[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_1/jiffies[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_1/jiffies[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_1/jiffies[00m$ exit
+exit
+
+Script done on 2020-10-01 23:07:10+0530

@@ -1,0 +1,27 @@
+Script started on 2020-10-01 23:10:56+0530
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_1/seconds[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_1/seconds[00m$ make
+make -C /lib/modules/4.15.0-20-generic/build M=/home/nuwan/CE-Sem6/CO327/project/new/part_1/seconds modules
+make[1]: Entering directory '/usr/src/linux-headers-4.15.0-20-generic'
+  Building modules, stage 2.
+  MODPOST 1 modules
+make[1]: Leaving directory '/usr/src/linux-headers-4.15.0-20-generic'
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_1/seconds[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_1/seconds[00m$ sudo insmod seconds.ko
+[sudo] password for nuwan: 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_1/seconds[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_1/seconds[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_1/seconds[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_1/seconds[00m$ /[Kcat /proc/d[Kseconds 
+10 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_1/seconds[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_1/seconds[00m$ cat /proc/seconds 
+13 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_1/seconds[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_1/seconds[00m$ cat /proc/seconds 
+16 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_1/seconds[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_1/seconds[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_1/seconds[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_1/seconds[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_1/seconds[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_1/seconds[00m$ sudo rmmod seconds 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_1/seconds[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_1/seconds[00m$ sudo rmmod seconds [1Pcat /proc/[C[C[C[C[C[C[C[C
+cat: /proc/seconds: No such file or directory
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_1/seconds[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_1/seconds[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_1/seconds[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_1/seconds[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_1/seconds[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_1/seconds[00m$ exit
+exit
+
+Script done on 2020-10-01 23:11:38+0530

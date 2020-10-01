@@ -1,0 +1,133 @@
+Script started on 2020-10-01 23:20:38+0530
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/collatz[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/collatz[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/collatz[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/collatz[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/collatz[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/collatz[00m$ make
+make -C /lib/modules/4.15.0-20-generic/build M=/home/nuwan/CE-Sem6/CO327/project/new/part_3/collatz modules
+make[1]: Entering directory '/usr/src/linux-headers-4.15.0-20-generic'
+  CC [M]  /home/nuwan/CE-Sem6/CO327/project/new/part_3/collatz/collatz.o
+  Building modules, stage 2.
+  MODPOST 1 modules
+  CC      /home/nuwan/CE-Sem6/CO327/project/new/part_3/collatz/collatz.mod.o
+  LD [M]  /home/nuwan/CE-Sem6/CO327/project/new/part_3/collatz/collatz.ko
+make[1]: Leaving directory '/usr/src/linux-headers-4.15.0-20-generic'
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/collatz[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/collatz[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/collatz[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/collatz[00m$ insmod [1@s[1@u[1@d[1@o[1@ [C[C[C[C[C[C[Ccollatz.ko 
+[sudo] password for nuwan: 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/collatz[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/collatz[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/collatz[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/collatz[00m$ dmesg
+[32m[ 5283.720033] [0mGenerating Collatz
+[32m[ 5283.819734] [0mTraversing Collatz
+[32m[ 5283.819738] [0m25
+[32m[ 5283.819740] [0m76
+[32m[ 5283.819742] [0m38
+[32m[ 5283.819744] [0m19
+[32m[ 5283.819746] [0m58
+[32m[ 5283.819748] [0m29
+[32m[ 5283.819750] [0m88
+[32m[ 5283.819752] [0m44
+[32m[ 5283.819754] [0m22
+[32m[ 5283.819756] [0m11
+[32m[ 5283.819758] [0m34
+[32m[ 5283.819760] [0m17
+[32m[ 5283.819762] [0m52
+[32m[ 5283.819764] [0m26
+[32m[ 5283.819766] [0m13
+[32m[ 5283.819768] [0m40
+[32m[ 5283.819770] [0m20
+[32m[ 5283.819772] [0m10
+[32m[ 5283.819774] [0m5
+[32m[ 5283.819776] [0m16
+[32m[ 5283.819779] [0m8
+[32m[ 5283.819781] [0m4
+[32m[ 5283.819783] [0m2
+[32m[ 5283.819785] [0m1
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/collatz[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/collatz[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/collatz[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/collatz[00m$ sudo rme[Kmod collatz 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/collatz[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/collatz[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/collatz[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/collatz[00m$ sudo dmesg -c
+[32m[ 5283.720033] [0mGenerating Collatz
+[32m[ 5283.819734] [0mTraversing Collatz
+[32m[ 5283.819738] [0m25
+[32m[ 5283.819740] [0m76
+[32m[ 5283.819742] [0m38
+[32m[ 5283.819744] [0m19
+[32m[ 5283.819746] [0m58
+[32m[ 5283.819748] [0m29
+[32m[ 5283.819750] [0m88
+[32m[ 5283.819752] [0m44
+[32m[ 5283.819754] [0m22
+[32m[ 5283.819756] [0m11
+[32m[ 5283.819758] [0m34
+[32m[ 5283.819760] [0m17
+[32m[ 5283.819762] [0m52
+[32m[ 5283.819764] [0m26
+[32m[ 5283.819766] [0m13
+[32m[ 5283.819768] [0m40
+[32m[ 5283.819770] [0m20
+[32m[ 5283.819772] [0m10
+[32m[ 5283.819774] [0m5
+[32m[ 5283.819776] [0m16
+[32m[ 5283.819779] [0m8
+[32m[ 5283.819781] [0m4
+[32m[ 5283.819783] [0m2
+[32m[ 5283.819785] [0m1
+[32m[ 5302.163877] [0mRemoving Collatz
+[32m[ 5302.163881] [0m25 
+[32m[ 5302.163884] [0m76 
+[32m[ 5302.163887] [0m38 
+[32m[ 5302.163892] [0m19 
+[32m[ 5302.163895] [0m58 
+[32m[ 5302.163900] [0m29 
+[32m[ 5302.163903] [0m88 
+[32m[ 5302.163906] [0m44 
+[32m[ 5302.163909] [0m22 
+[32m[ 5302.163911] [0m11 
+[32m[ 5302.163914] [0m34 
+[32m[ 5302.163916] [0m17 
+[32m[ 5302.163918] [0m52 
+[32m[ 5302.163921] [0m26 
+[32m[ 5302.163923] [0m13 
+[32m[ 5302.163927] [0m40 
+[32m[ 5302.163930] [0m20 
+[32m[ 5302.163932] [0m10 
+[32m[ 5302.163935] [0m5 
+[32m[ 5302.163937] [0m16 
+[32m[ 5302.163940] [0m8 
+[32m[ 5302.163942] [0m4 
+[32m[ 5302.163944] [0m2 
+[32m[ 5302.163947] [0m1 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/collatz[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/collatz[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/collatz[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/collatz[00m$ exi[K[K[Ksudo dmesg -crmmod collatz dmesg[Ksudo insmod collatz.ko co[Kount[K[K[K[K[Kstart=5
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/collatz[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/collatz[00m$ dmesg
+[32m[ 5338.627889] [0mGenerating Collatz
+[32m[ 5338.727445] [0mTraversing Collatz
+[32m[ 5338.727448] [0m5
+[32m[ 5338.727450] [0m16
+[32m[ 5338.727452] [0m8
+[32m[ 5338.727454] [0m4
+[32m[ 5338.727455] [0m2
+[32m[ 5338.727457] [0m1
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/collatz[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/collatz[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/collatz[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/collatz[00m$ dmesgsudo insmod collatz.ko start=5dmesg -c[Krmmod collatz dmesg[Ksudo insmod collatz.ko make[Ksudo insmod collatz.ko dmesg[Ksudo insmod collatz.ko dmesg[Ksudo rmmod collatz 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/collatz[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/collatz[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/collatz[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/collatz[00m$ sudo rmmod collatz dmesg[Ksudo insmod collatz.ko start=5dmesg -c[K
+[32m[ 5338.627889] [0mGenerating Collatz
+[32m[ 5338.727445] [0mTraversing Collatz
+[32m[ 5338.727448] [0m5
+[32m[ 5338.727450] [0m16
+[32m[ 5338.727452] [0m8
+[32m[ 5338.727454] [0m4
+[32m[ 5338.727455] [0m2
+[32m[ 5338.727457] [0m1
+[32m[ 5353.470453] [0mRemoving Collatz
+[32m[ 5353.470457] [0m5 
+[32m[ 5353.470459] [0m16 
+[32m[ 5353.470462] [0m8 
+[32m[ 5353.470464] [0m4 
+[32m[ 5353.470466] [0m2 
+[32m[ 5353.470468] [0m1 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/collatz[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/collatz[00m$ 
+]0;nuwan@nuwan-VirtualBox: ~/CE-Sem6/CO327/project/new/part_3/collatz[01;32mnuwan@nuwan-VirtualBox[00m:[01;34m~/CE-Sem6/CO327/project/new/part_3/collatz[00m$ exit
+exit
+
+Script done on 2020-10-01 23:22:19+0530
