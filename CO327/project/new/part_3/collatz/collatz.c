@@ -30,18 +30,20 @@ int simple_init(void){
 		l->data = n;
 		INIT_LIST_HEAD(&l->list);
 		list_add_tail(&l->list, &collatz_list);
+
+		// Number generator
 		if(n & 1){
 			n = 3*n + 1;
-		}
-		else{
+		} else{
 			n = n/2;
 		}
 	}
-	
+
 	l = kmalloc(sizeof(*l), GFP_KERNEL);
 	l->data = 1;
 	list_add_tail(&l->list, &collatz_list);
 	mdelay(100);
+
 	printk(KERN_INFO "Traversing Collatz\n");
 	list_for_each_entry(ptr, &collatz_list, list) {
 		printk(KERN_INFO "%d\n", ptr->data);
@@ -52,10 +54,11 @@ int simple_init(void){
 
 void simple_exit(void){
 	struct collatz *ptr,*next;
-	printk(KERN_INFO "Removing Collatz∖n");
+
+	printk(KERN_INFO "Removing Collatz");
 
 	list_for_each_entry_safe(ptr,next, &collatz_list, list) {
-		printk(KERN_INFO "%d\n", ptr->data);
+		printk(KERN_INFO "%d \n", ptr->data);
 		list_del(&ptr->list);
 		kfree(ptr);
 	}
